@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aroma Coffee House - Premium Coffee Experience</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <!-- External CSS File Simulation -->
+    <style id="external-styles">
+        /* EXTERNAL CSS STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            border: #666;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f5f0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            /* Box Model: content + padding + border + margin */
+        }
+
+        /* Navigation with Flex Layout */
+        .navbar {
+            background: linear-gradient(135deg, #6f4e37 0%, #3e2723 100%);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            font-size: 28px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 10px;
+        }
+
+        .nav-menu a:hover {
+            color: #d4a574;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(62, 39, 35, 0.7), rgba(111, 78, 55, 0.8)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%233e2723" width="1200" height="600"/><circle cx="200" cy="150" r="80" fill="%236f4e37" opacity="0.3"/><circle cx="800" cy="400" r="100" fill="%236f4e37" opacity="0.2"/><circle cx="1000" cy="200" r="60" fill="%236f4e37" opacity="0.25"/></svg>');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 80px 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #d4a574;
+        }
+
+        /* Display Properties Demo */
+        .btn {
+            display: inline-block; /* Display: inline-block */
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #d4a574, #b8956a);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Section Headers */
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            color: #3e2723;
+            margin: 60px 0 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block; /* Display: block */
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #6f4e37, #d4a574);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+    </style>
+
+    <style>
+        /* INTERNAL CSS STYLES */
+        
+        /* Float Property Demo */
+        .featured-section {
+            background: #fff;
+            padding: 60px 0;
+            overflow: auto; /* Clear floats */
+        }
+
+        .featured-image {
+            float: left; 
+            width: 45%;
+            margin-right: 5%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .featured-content {
+            float: left;
+            width: 50%;
+        }
+
+        .featured-content h2 {
+            font-size: 36px;
+            color: #3e2723;
+            margin-bottom: 20px;
+        }
+
+        .featured-content p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        /* Coffee Menu - Flex Layout */
+        .menu-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        /* Box Model: Padding, Border, Margin */
+        .menu-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            width: 280px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            /* Box Model Demo */
+            padding: 0;
+            margin: 10px;
+            border: 3px solid transparent;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(111, 78, 55, 0.3);
+            border-color: #d4a574;
+        }
+
+        .menu-item-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #6f4e37, #8d6e63);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .menu-item-content {
+            padding: 25px; 
+        }
+
+        .menu-item-content h3 {
+            font-size: 22px;
+            color: #3e2723;
+            margin-bottom: 10px;
+        }
+
+        .menu-item-content p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: #6f4e37;
+        }
+
+        /* Parent-Child Selectors */
+        .features {
+            background: linear-gradient(135deg, #f5e6d3 0%, #d4a574 100%);
+            padding: 60px 0;
+        }
+
+        /* Multi-class Selector */
+        .features .feature-grid {
+            display: flex;
+            gap: 30px;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        /* Parent > Child Selector */
+        .features > .container > .feature-grid > .feature-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 280px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-box .icon {
+            font-size: 48px;
+            color: #6f4e37;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-box h3 {
+            font-size: 22px;
+            color: #3e2723;
+            margin-bottom: 15px;
+        }
+
+        .feature-box p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Testimonials with Gradient */
+        .testimonials {
+            background: linear-gradient(to bottom, #3e2723, #6f4e37);
+            padding: 60px 0;
+            color: white;
+        }
+
+        .testimonial-cards {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            width: 350px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .testimonial-card .stars {
+            color: #d4a574;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .customer-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .customer-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d4a574, #b8956a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .customer-name {
+            font-weight: bold;
+            color: #d4a574;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 30px auto 0;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px 20px;
+            border: 2px solid #d4a574;
+            border-radius: 30px;
+            font-size: 16px;
+        }
+
+        .newsletter-form button {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #6f4e37, #3e2723);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: #3e2723;
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h4 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #d4a574;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #d4a574;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            font-size: 24px;
+        }
+
+        .social-icons a {
+            color: white;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #d4a574;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ccc;
+        }
+
+        /* Display: none Demo */
+        .mobile-menu {
+            display: none; /* Display: none - hidden on desktop */
+        }
+
+        /* Text Styling Properties */
+        .styled-text {
+            font-family: Georgia, serif;
+            font-size: 18px;
+            font-weight: 400;
+            font-style: normal;
+            text-align: justify;
+            text-decoration: none;
+            text-transform: none;
+            letter-spacing: 0.5px;
+            word-spacing: 2px;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .highlight-text {
+            font-weight: bold;
+            color: #6f4e37;
+            text-decoration: underline;
+            text-transform: uppercase;
+        }
+
+        /* Media Queries - Responsive Design */
+        @media screen and (max-width: 1024px) {
+            .menu-item {
+                width: 260px;
+            }
+
+            .featured-image,
+            .featured-content {
+                float: none;
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 30px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 42px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+
+            .nav-menu {
+                display: none; /* Display: none on mobile */
+            }
+
+            .mobile-menu {
+                display: block; /* Show on mobile */
+                color: white;
+                font-size: 24px;
+                cursor: pointer;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .menu-item {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .feature-box {
+                width: 100% !important;
+                max-width: 350px;
+            }
+
+            .testimonial-card {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+
+            .btn {
+                padding: 12px 30px;
+                font-size: 14px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                flex-wrap: wrap;
+            }
+
+            .newsletter-form input {
+                width: 100%;
+            }
+        }
+
+        /* Multi-class Selectors Demo */
+        .btn.primary {
+            background: linear-gradient(135deg, #6f4e37, #3e2723);
+        }
+
+        .btn.secondary {
+            background: linear-gradient(135deg, #d4a574, #b8956a);
+        }
+
+        .btn.outline {
+            background: transparent;
+            border: 2px solid #6f4e37;
+            color: #6f4e37;
+        }
+
+        /* Adjacent Sibling Selector */
+        .section-title + p {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-coffee"></i>
+                <span>Coffee Shop</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#home"><i class="ri-home-4-line"></i> Home</a></li>
+                <li><a href="#menu"><i class="ri-restaurant-line"></i> Menu</a></li>
+                <li><a href="#about"><i class="ri-information-line"></i> About</a></li>
+                <li><a href="#contact"><i class="ri-mail-line"></i> Contact</a></li>
+                <li><a href="#Categories"><i class="ri-categories-line"></i>Categories</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Welcome to Love CoffeeShop House</h1>
+            <p>Experience the Perfect Blend of Taste and Aroma</p>
+            <!-- Inline CSS Demo -->
+            <a href="#menu" class="btn" style="margin-right: 15px; margin-top: 10px;">Explore Menu</a>
+            <a href="#Order" class="btn" style="margin-right: 20px;" outline">Order Now</a>
+            <a href="#Other Menu" class="btn" style="margin-right: 30px;" outline="">Others Menu</a>
+        </div>
+    </section>
+
+    <!-- Featured Section with Float -->
+    <section class="featured-section">
+        <div class="container">
+            <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect fill='%236f4e37' width='400' height='300'/><circle cx='200' cy='150' r='80' fill='%23d4a574' opacity='0.5'/><text x='50%25' y='50%25' fill='%23fff' font-size='60' text-anchor='middle' opacity='0.3'>☕</text></svg>" 
+                 alt="Featured Coffee" class="featured-image">
+            <div class="featured-content">
+                <h2>Our Signature Blend</h2>
+                <p class="styled-text">
+                    Discover the <span class="highlight-text">finest coffee</span> experience with our signature blend, 
+                    carefully crafted from premium Arabica beans sourced from the highlands of Colombia and Ethiopia.
+                </p>
+                <p class="styled-text">
+                    Each cup is a journey through rich, complex flavors with notes of chocolate, caramel, and a hint of citrus. 
+                    Our expert baristas ensure every brew meets the highest standards of quality and taste.
+                </p>
+                <!-- Inline Style Demo -->
+                <a href="#" class="btn primary" style="display: inline-block; margin-top: 20px; text-decoration: none;">
+                    <i class="fas fa-shopping-cart"></i> Order Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coffee Menu Section -->
+    <section id="menu">
+        <div class="container">
+            <h2 class="section-title">Our Coffee Menu</h2>
+            <p>Explore our handcrafted beverages made with passion and precision</p>
+            
+            <div class="menu-grid">
+                <!-- Menu Item 1 -->
+                <div class="menu-item">
+                    <div class="menu-item-image">
+                        <i class="fas fa-coffee"></i>
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Espresso</h3>
+                        <p>Rich and bold shot of pure coffee perfection</p>
+                        <div class="price">
+                            <span>₹120</span>
+                            <i class="ri-star-fill" style="color: #d4a574;"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 2 -->
+                <div class="menu-item">
+                    <div class="menu-item-image" style="background: linear-gradient(135deg, #8d6e63, #a1887f);">
+                        <i class="fas fa-mug-hot"></i>
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Cappuccino</h3>
+                        <p>Smooth espresso with steamed milk foam</p>
+                        <div class="price">
+                            <span>₹150</span>
+                            <i class="ri-star-fill" style="color: #d4a574;"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 3 -->
+                <div class="menu-item">
+                    <div class="menu-item-image" style="background: linear-gradient(135deg, #5d4037, #6f4e37);">
+                        <i class="fas fa-coffee"></i>
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Latte</h3>
+                        <p>Creamy espresso with silky steamed milk</p>
+                        <div class="price">
+                            <span>₹160</span>
+                            <i class="ri-star-fill" style="color: #d4a574;"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 4 -->
+                <div class="menu-item">
+                    <div class="menu-item-image" style="background: linear-gradient(135deg, #4e342e, #5d4037);">
+                        <i class="fas fa-ice-cream"></i>
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Iced Coffee</h3>
+                        <p>Refreshing cold brew over ice</p>
+                        <div class="price">
+                            <span>₹140</span>
+                            <i class="ri-star-fill" style="color: #d4a574;"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 5 -->
+                <div class="menu-item">
+                    <div class="menu-item-image" style="background: linear-gradient(135deg, #795548, #8d6e63);">
+                        <i class="fas fa-cookie-bite"></i>
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Mocha</h3>
+                        <p>Chocolate and espresso harmony</p>
+                        <div class="price">
+                            <span>₹170</span>
+                            <i class="ri-star-fill" style="color: #d4a574;"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu Item 6 -->
+                <div class="menu-item">
+                    <div class="menu-item-image" style="background: linear-gradient(135deg, #6d4c41, #795548);">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="menu-item-content">
+                        <h3>Macchiato</h3>
+                        <p>Espresso marked with milk foam</p>
+                        <div class="price">
+                            <span>₹130</span>
+                            <i class="ri-star-fill" style="color: #d4a574;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section (Parent-Child Selectors) -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title" style="color: #3e2723;">Why Choose Aroma Coffee?</h2>
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <i class="fas fa-seedling icon"></i>
+                    <h3>100% Organic</h3>
+                    <p>We source only the finest organic coffee beans from sustainable farms around the world.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="ri-user-star-line icon"></i>
+                    <h3>Expert Baristas</h3>
+                    <p>Our skilled baristas craft each cup with precision and care for the perfect coffee experience.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fas fa-heart icon"></i>
+                    <h3>Made with Love</h3>
+                    <p>Every beverage is prepared with passion and attention to detail for maximum satisfaction.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="ri-24-hours-line icon"></i>
+                    <h3>Fresh Daily</h3>
+                    <p>We roast our beans fresh every day to ensure the richest flavor and aroma in every cup.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title" style="color: #d4a574;">What Our Customers Say</h2>
+            <div class="testimonial-cards">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"The best coffee I've ever had! The aroma and taste are absolutely incredible. Highly recommended!"</p>
+                    <div class="customer-info">
+                        <div class="customer-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <div class="customer-name">Sarah Johnson</div>
+                            <div style="color: #ccc; font-size: 14px;">Coffee Enthusiast</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Amazing atmosphere and the staff are so friendly. Their cappuccino is perfection in a cup!"</p>
+                    <div class="customer-info">
+                        <div class="customer-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <div class="customer-name">Michael Chen</div>
+                            <div style="color: #ccc; font-size: 14px;">Regular Customer</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"A true coffee paradise! The quality and consistency are unmatched. My go-to place every morning."</p>
+                    <div class="customer-info">
+                        <div class="customer-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div>
+                            <div class="customer-name">Emma Davis</div>
+                            <div style="color: #ccc; font-size: 14px;">Coffee Lover</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter" id="contact">
+        <div class="container">
+            <h2 class="section-title">Stay Updated</h2>
+            <p>Subscribe to our newsletter for exclusive offers and coffee tips</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">
+                    <i class="ri-send-plane-fill"></i> Subscribe
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About Us</h4>
+                    <ul>
+                        <li><a href="#">Our Story</a></li>
+                        <li><a href="#">Our Coffee</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">Menu</a></li>
+                        <li><a href="#">Locations</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">Hotels</a></li>   
+                        <li><a href="#">Place</a></li>  
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </body>
+</html>
